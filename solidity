@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Portfolio {
+    struct Project {
+        string name;
+        string description;
+    }
+
+    mapping(uint256 => Project) public projects;
+    uint256 public projectCount;
+
+    event ProjectAdded(uint256 projectId, string name, string description);
+
+    function addProject(string memory _name, string memory _description) public {
+        projectCount++;
+        projects[projectCount] = Project(_name, _description);
+        emit ProjectAdded(projectCount, _name, _description);
+    }
+}
